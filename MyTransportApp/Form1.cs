@@ -13,15 +13,15 @@ namespace MyTransportApp
 {
     public partial class Form1 : Form
     {
+        ITransport transport = new Transport();
         public Form1()
         {
             InitializeComponent();
         }
-        ITransport transport = new Transport();
 
         private void StartortSuchleiste1_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void SuchenButton1_Click(object sender, EventArgs e)
