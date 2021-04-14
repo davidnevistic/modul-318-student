@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SwissTransport.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace MyTransportApp
         public Form1()
         {
             InitializeComponent();
+        }
+        ITransport transport = new Transport();
+
+        private void StartortSuchleiste1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SuchenButton1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

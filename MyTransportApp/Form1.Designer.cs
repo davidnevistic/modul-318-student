@@ -38,15 +38,25 @@
             this.label3 = new System.Windows.Forms.Label();
             this.StartortSuchleiste2 = new System.Windows.Forms.TextBox();
             this.SuchenButton2 = new System.Windows.Forms.Button();
-            this.FahrplanAusgabe = new System.Windows.Forms.ListBox();
-            this.AbfahrtstafelAusgabe = new System.Windows.Forms.ListBox();
+            this.AusgabeFahrplan = new System.Windows.Forms.DataGridView();
+            this.AusgabeAbfahrtstafel = new System.Windows.Forms.DataGridView();
+            this.LinieFahrplan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AbfahrtszeitFahrplan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StationenFahrplan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AnkunftszeitFahrplan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LinieAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AbfahrtszeitAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AnkunftszeitAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ZielortAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AusgabeFahrplan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AusgabeAbfahrtstafel)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.FahrplanAusgabe);
+            this.groupBox1.Controls.Add(this.AusgabeFahrplan);
             this.groupBox1.Controls.Add(this.SuchenButton1);
             this.groupBox1.Controls.Add(this.ZielortSuchleiste);
             this.groupBox1.Controls.Add(this.label2);
@@ -54,7 +64,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(394, 426);
+            this.groupBox1.Size = new System.Drawing.Size(453, 426);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fahrplan";
@@ -74,6 +84,7 @@
             this.StartortSuchleiste1.Name = "StartortSuchleiste1";
             this.StartortSuchleiste1.Size = new System.Drawing.Size(165, 20);
             this.StartortSuchleiste1.TabIndex = 1;
+            this.StartortSuchleiste1.TextChanged += new System.EventHandler(this.StartortSuchleiste1_TextChanged);
             // 
             // label2
             // 
@@ -99,16 +110,17 @@
             this.SuchenButton1.TabIndex = 4;
             this.SuchenButton1.Text = "Suchen";
             this.SuchenButton1.UseVisualStyleBackColor = true;
+            this.SuchenButton1.Click += new System.EventHandler(this.SuchenButton1_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.AbfahrtstafelAusgabe);
+            this.groupBox2.Controls.Add(this.AusgabeAbfahrtstafel);
             this.groupBox2.Controls.Add(this.SuchenButton2);
             this.groupBox2.Controls.Add(this.StartortSuchleiste2);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(434, 12);
+            this.groupBox2.Location = new System.Drawing.Point(471, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(345, 426);
+            this.groupBox2.Size = new System.Drawing.Size(327, 426);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Abfahrtstafel";
@@ -138,21 +150,79 @@
             this.SuchenButton2.Text = "Suchen";
             this.SuchenButton2.UseVisualStyleBackColor = true;
             // 
-            // FahrplanAusgabe
+            // AusgabeFahrplan
             // 
-            this.FahrplanAusgabe.FormattingEnabled = true;
-            this.FahrplanAusgabe.Location = new System.Drawing.Point(7, 170);
-            this.FahrplanAusgabe.Name = "FahrplanAusgabe";
-            this.FahrplanAusgabe.Size = new System.Drawing.Size(381, 251);
-            this.FahrplanAusgabe.TabIndex = 5;
+            this.AusgabeFahrplan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AusgabeFahrplan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.LinieFahrplan,
+            this.AbfahrtszeitFahrplan,
+            this.StationenFahrplan,
+            this.AnkunftszeitFahrplan});
+            this.AusgabeFahrplan.Location = new System.Drawing.Point(0, 165);
+            this.AusgabeFahrplan.Name = "AusgabeFahrplan";
+            this.AusgabeFahrplan.Size = new System.Drawing.Size(447, 255);
+            this.AusgabeFahrplan.TabIndex = 5;
             // 
-            // AbfahrtstafelAusgabe
+            // AusgabeAbfahrtstafel
             // 
-            this.AbfahrtstafelAusgabe.FormattingEnabled = true;
-            this.AbfahrtstafelAusgabe.Location = new System.Drawing.Point(7, 122);
-            this.AbfahrtstafelAusgabe.Name = "AbfahrtstafelAusgabe";
-            this.AbfahrtstafelAusgabe.Size = new System.Drawing.Size(332, 303);
-            this.AbfahrtstafelAusgabe.TabIndex = 3;
+            this.AusgabeAbfahrtstafel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AusgabeAbfahrtstafel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.LinieAbfahrtstafel,
+            this.AbfahrtszeitAbfahrtstafel,
+            this.AnkunftszeitAbfahrtstafel,
+            this.ZielortAbfahrtstafel});
+            this.AusgabeAbfahrtstafel.Location = new System.Drawing.Point(5, 122);
+            this.AusgabeAbfahrtstafel.Name = "AusgabeAbfahrtstafel";
+            this.AusgabeAbfahrtstafel.Size = new System.Drawing.Size(312, 298);
+            this.AusgabeAbfahrtstafel.TabIndex = 3;
+            // 
+            // LinieFahrplan
+            // 
+            this.LinieFahrplan.HeaderText = "Linie/Gleis";
+            this.LinieFahrplan.Name = "LinieFahrplan";
+            this.LinieFahrplan.Width = 70;
+            // 
+            // AbfahrtszeitFahrplan
+            // 
+            this.AbfahrtszeitFahrplan.HeaderText = "Abfahrtszeit";
+            this.AbfahrtszeitFahrplan.Name = "AbfahrtszeitFahrplan";
+            this.AbfahrtszeitFahrplan.Width = 70;
+            // 
+            // StationenFahrplan
+            // 
+            this.StationenFahrplan.HeaderText = "Erste vier Stationen";
+            this.StationenFahrplan.Name = "StationenFahrplan";
+            this.StationenFahrplan.Width = 190;
+            // 
+            // AnkunftszeitFahrplan
+            // 
+            this.AnkunftszeitFahrplan.HeaderText = "Ankunftszeit";
+            this.AnkunftszeitFahrplan.Name = "AnkunftszeitFahrplan";
+            this.AnkunftszeitFahrplan.Width = 70;
+            // 
+            // LinieAbfahrtstafel
+            // 
+            this.LinieAbfahrtstafel.HeaderText = "Linie/Gleis";
+            this.LinieAbfahrtstafel.Name = "LinieAbfahrtstafel";
+            this.LinieAbfahrtstafel.Width = 60;
+            // 
+            // AbfahrtszeitAbfahrtstafel
+            // 
+            this.AbfahrtszeitAbfahrtstafel.HeaderText = "Abfahrtszeit";
+            this.AbfahrtszeitAbfahrtstafel.Name = "AbfahrtszeitAbfahrtstafel";
+            this.AbfahrtszeitAbfahrtstafel.Width = 70;
+            // 
+            // AnkunftszeitAbfahrtstafel
+            // 
+            this.AnkunftszeitAbfahrtstafel.HeaderText = "Ankunftszeit";
+            this.AnkunftszeitAbfahrtstafel.Name = "AnkunftszeitAbfahrtstafel";
+            this.AnkunftszeitAbfahrtstafel.Width = 70;
+            // 
+            // ZielortAbfahrtstafel
+            // 
+            this.ZielortAbfahrtstafel.HeaderText = "Zielort";
+            this.ZielortAbfahrtstafel.Name = "ZielortAbfahrtstafel";
+            this.ZielortAbfahrtstafel.Width = 65;
             // 
             // Form1
             // 
@@ -167,6 +237,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AusgabeFahrplan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AusgabeAbfahrtstafel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -179,12 +251,20 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox StartortSuchleiste1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox FahrplanAusgabe;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox AbfahrtstafelAusgabe;
         private System.Windows.Forms.Button SuchenButton2;
         private System.Windows.Forms.TextBox StartortSuchleiste2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView AusgabeFahrplan;
+        private System.Windows.Forms.DataGridView AusgabeAbfahrtstafel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LinieFahrplan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AbfahrtszeitFahrplan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StationenFahrplan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AnkunftszeitFahrplan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LinieAbfahrtstafel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AbfahrtszeitAbfahrtstafel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AnkunftszeitAbfahrtstafel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ZielortAbfahrtstafel;
     }
 }
 
