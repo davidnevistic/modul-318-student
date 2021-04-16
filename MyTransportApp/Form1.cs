@@ -4,8 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -45,9 +48,13 @@ namespace MyTransportApp
                     VorschlagBox1.Items.Add(station.Name);
                 }
             }
-            catch
+            catch (WebException)
             {
-
+                MessageBox.Show("keine Internetverbindung");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("UNBEKANNTER FEHLER!!!");
             }
         }
 
@@ -63,9 +70,13 @@ namespace MyTransportApp
                     VorschlagBox2.Items.Add(station.Name);
                 }
             }
-            catch
+            catch (WebException)
             {
-
+                MessageBox.Show("keine Internetverbindung");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("UNBEKANNTER FEHLER!!!");
             }
         }
 
@@ -86,9 +97,13 @@ namespace MyTransportApp
                     });
                 }
             }
-            catch
+            catch (WebException)
             {
-
+                MessageBox.Show("keine Internetverbindung");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("UNBEKANNTER FEHLER!!!");
             }
         }
 
@@ -107,16 +122,20 @@ namespace MyTransportApp
             try
             {
                 VorschlagBox3.Items.Clear();
-                List<Station> stationen = transport.GetStations(StartortSuchleiste2.Text + "*").StationList;
+                List<Station> stationen = transport.GetStations(StartortSuchleiste2.Text).StationList;
 
                 foreach (Station station in stationen)
                 {
                     VorschlagBox3.Items.Add(station.Name);
                 }
             }
-            catch
+            catch(WebException)
             {
-
+                MessageBox.Show("keine Internetverbindung");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("UNBEKANNTER FEHLER!!!");
             }
         }
 
@@ -133,14 +152,18 @@ namespace MyTransportApp
                     AusgabeAbfahrtstafel.Rows.Add(new string[]
                     {
                         Abfahrtstafel[i].Number.ToString(),
-                        Abfahrtstafel[i].Stop.Departure.ToString("HH:mm") ?? "unbekant",
+                        Abfahrtstafel[i].Stop.Departure.ToString("HH:mm") ?? "unbekannt",
                         Abfahrtstafel[i].To.ToString()
                     });
                 }
             }
-            catch
+            catch (WebException)
             {
-
+                MessageBox.Show("keine Internetverbindung");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("UNBEKANNTER FEHLER!!!");
             }
         }
 
@@ -153,5 +176,38 @@ namespace MyTransportApp
         {
             return transport.GetStations(station).StationList[0].Id.ToString();
         }
+
+        private void MailButton_Click(object sender, EventArgs e)
+        {
+            string[] TempConnectionData = new string[7];
+            string EmailBody = "Verbindung gesucht von Online-Fahrplan %0a%0a%0a" +
+            $"Von {StartortSuchleiste1.Text} nach {ZielortSuchleiste.Text}%0a";
+
+            foreach (DataGridViewRow row in AusgabeFahrplan.SelectedRows)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    EmailBody += AusgabeFahrplan.Columns[i].Name;
+                    EmailBody += $": {row.Cells[i].Value} %0a";
+                }
+                EmailBody += "%0a%0a%0a";
+            }
+
+            try
+            {
+                System.Diagnostics.Process.Start(String.Format("mailto:{0}?subject={1}&body={2}",
+                "irgendeine@email.com,",
+                $"Verbindung von {StartortSuchleiste1.Text} nach {ZielortSuchleiste.Text}", EmailBody));
+            }
+            catch (WebException)
+            {
+                MessageBox.Show("keine Internetverbindung");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("UNBEKANNTER FEHLER!!!");
+            }
+        }
     }
+    
 }

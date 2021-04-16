@@ -54,6 +54,7 @@
             this.labelDatum = new System.Windows.Forms.Label();
             this.labelUhrzeit = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.MailButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AusgabeFahrplan)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.MailButton);
             this.groupBox1.Controls.Add(this.labelUhrzeit);
             this.groupBox1.Controls.Add(this.labelDatum);
             this.groupBox1.Controls.Add(this.VorschlagBox2);
@@ -285,6 +287,16 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // MailButton
+            // 
+            this.MailButton.Location = new System.Drawing.Point(421, 166);
+            this.MailButton.Name = "MailButton";
+            this.MailButton.Size = new System.Drawing.Size(75, 23);
+            this.MailButton.TabIndex = 10;
+            this.MailButton.Text = "Mail";
+            this.MailButton.UseVisualStyleBackColor = true;
+            this.MailButton.Click += new System.EventHandler(this.MailButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,6 +344,7 @@
         private System.Windows.Forms.Label labelDatum;
         private System.Windows.Forms.Label labelUhrzeit;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button MailButton;
     }
 }
 
