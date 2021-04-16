@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.VorschlagBox2 = new System.Windows.Forms.ListBox();
             this.VorschlagBox1 = new System.Windows.Forms.ListBox();
@@ -44,13 +45,15 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.VorschlagBox3 = new System.Windows.Forms.ListBox();
             this.AusgabeAbfahrtstafel = new System.Windows.Forms.DataGridView();
+            this.LinieAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AbfahrtszeitAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ZielortAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SuchenButton2 = new System.Windows.Forms.Button();
             this.StartortSuchleiste2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.LinieAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AbfahrtszeitAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AnkunftszeitAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ZielortAbfahrtstafel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelDatum = new System.Windows.Forms.Label();
+            this.labelUhrzeit = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AusgabeFahrplan)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -59,6 +62,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelUhrzeit);
+            this.groupBox1.Controls.Add(this.labelDatum);
             this.groupBox1.Controls.Add(this.VorschlagBox2);
             this.groupBox1.Controls.Add(this.VorschlagBox1);
             this.groupBox1.Controls.Add(this.AusgabeFahrplan);
@@ -77,7 +82,7 @@
             // VorschlagBox2
             // 
             this.VorschlagBox2.FormattingEnabled = true;
-            this.VorschlagBox2.Location = new System.Drawing.Point(227, 83);
+            this.VorschlagBox2.Location = new System.Drawing.Point(227, 108);
             this.VorschlagBox2.Name = "VorschlagBox2";
             this.VorschlagBox2.Size = new System.Drawing.Size(172, 82);
             this.VorschlagBox2.TabIndex = 7;
@@ -86,7 +91,7 @@
             // VorschlagBox1
             // 
             this.VorschlagBox1.FormattingEnabled = true;
-            this.VorschlagBox1.Location = new System.Drawing.Point(9, 83);
+            this.VorschlagBox1.Location = new System.Drawing.Point(7, 108);
             this.VorschlagBox1.Name = "VorschlagBox1";
             this.VorschlagBox1.Size = new System.Drawing.Size(173, 82);
             this.VorschlagBox1.TabIndex = 6;
@@ -100,10 +105,10 @@
             this.AbfahrtszeitFahrplan,
             this.StationenFahrplan,
             this.AnkunftszeitFahrplan});
-            this.AusgabeFahrplan.Location = new System.Drawing.Point(0, 171);
+            this.AusgabeFahrplan.Location = new System.Drawing.Point(0, 205);
             this.AusgabeFahrplan.Name = "AusgabeFahrplan";
             this.AusgabeFahrplan.RowHeadersVisible = false;
-            this.AusgabeFahrplan.Size = new System.Drawing.Size(480, 340);
+            this.AusgabeFahrplan.Size = new System.Drawing.Size(480, 306);
             this.AusgabeFahrplan.TabIndex = 5;
             // 
             // LinieFahrplan
@@ -132,7 +137,7 @@
             // 
             // SuchenButton1
             // 
-            this.SuchenButton1.Location = new System.Drawing.Point(422, 46);
+            this.SuchenButton1.Location = new System.Drawing.Point(421, 79);
             this.SuchenButton1.Name = "SuchenButton1";
             this.SuchenButton1.Size = new System.Drawing.Size(75, 23);
             this.SuchenButton1.TabIndex = 4;
@@ -142,7 +147,7 @@
             // 
             // ZielortSuchleiste
             // 
-            this.ZielortSuchleiste.Location = new System.Drawing.Point(227, 50);
+            this.ZielortSuchleiste.Location = new System.Drawing.Point(227, 82);
             this.ZielortSuchleiste.Name = "ZielortSuchleiste";
             this.ZielortSuchleiste.Size = new System.Drawing.Size(172, 20);
             this.ZielortSuchleiste.TabIndex = 3;
@@ -151,7 +156,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(224, 33);
+            this.label2.Location = new System.Drawing.Point(224, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 2;
@@ -159,7 +164,7 @@
             // 
             // StartortSuchleiste1
             // 
-            this.StartortSuchleiste1.Location = new System.Drawing.Point(7, 49);
+            this.StartortSuchleiste1.Location = new System.Drawing.Point(6, 82);
             this.StartortSuchleiste1.Name = "StartortSuchleiste1";
             this.StartortSuchleiste1.Size = new System.Drawing.Size(175, 20);
             this.StartortSuchleiste1.TabIndex = 1;
@@ -168,7 +173,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 33);
+            this.label1.Location = new System.Drawing.Point(4, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
@@ -191,10 +196,11 @@
             // VorschlagBox3
             // 
             this.VorschlagBox3.FormattingEnabled = true;
-            this.VorschlagBox3.Location = new System.Drawing.Point(9, 81);
+            this.VorschlagBox3.Location = new System.Drawing.Point(9, 108);
             this.VorschlagBox3.Name = "VorschlagBox3";
             this.VorschlagBox3.Size = new System.Drawing.Size(160, 82);
             this.VorschlagBox3.TabIndex = 4;
+            this.VorschlagBox3.SelectedIndexChanged += new System.EventHandler(this.VorschlagBox3_SelectedIndexChanged);
             // 
             // AusgabeAbfahrtstafel
             // 
@@ -202,42 +208,16 @@
             this.AusgabeAbfahrtstafel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LinieAbfahrtstafel,
             this.AbfahrtszeitAbfahrtstafel,
-            this.AnkunftszeitAbfahrtstafel,
             this.ZielortAbfahrtstafel});
-            this.AusgabeAbfahrtstafel.Location = new System.Drawing.Point(9, 171);
+            this.AusgabeAbfahrtstafel.Location = new System.Drawing.Point(9, 205);
             this.AusgabeAbfahrtstafel.Name = "AusgabeAbfahrtstafel";
             this.AusgabeAbfahrtstafel.RowHeadersVisible = false;
-            this.AusgabeAbfahrtstafel.Size = new System.Drawing.Size(371, 346);
+            this.AusgabeAbfahrtstafel.Size = new System.Drawing.Size(371, 312);
             this.AusgabeAbfahrtstafel.TabIndex = 3;
-            // 
-            // SuchenButton2
-            // 
-            this.SuchenButton2.Location = new System.Drawing.Point(208, 50);
-            this.SuchenButton2.Name = "SuchenButton2";
-            this.SuchenButton2.Size = new System.Drawing.Size(75, 23);
-            this.SuchenButton2.TabIndex = 2;
-            this.SuchenButton2.Text = "Suchen";
-            this.SuchenButton2.UseVisualStyleBackColor = true;
-            // 
-            // StartortSuchleiste2
-            // 
-            this.StartortSuchleiste2.Location = new System.Drawing.Point(7, 50);
-            this.StartortSuchleiste2.Name = "StartortSuchleiste2";
-            this.StartortSuchleiste2.Size = new System.Drawing.Size(163, 20);
-            this.StartortSuchleiste2.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Startort";
             // 
             // LinieAbfahrtstafel
             // 
-            this.LinieAbfahrtstafel.HeaderText = "Kante/Gleis";
+            this.LinieAbfahrtstafel.HeaderText = "Nummer";
             this.LinieAbfahrtstafel.Name = "LinieAbfahrtstafel";
             this.LinieAbfahrtstafel.Width = 75;
             // 
@@ -247,17 +227,63 @@
             this.AbfahrtszeitAbfahrtstafel.Name = "AbfahrtszeitAbfahrtstafel";
             this.AbfahrtszeitAbfahrtstafel.Width = 90;
             // 
-            // AnkunftszeitAbfahrtstafel
-            // 
-            this.AnkunftszeitAbfahrtstafel.HeaderText = "Ankunftszeit";
-            this.AnkunftszeitAbfahrtstafel.Name = "AnkunftszeitAbfahrtstafel";
-            this.AnkunftszeitAbfahrtstafel.Width = 90;
-            // 
             // ZielortAbfahrtstafel
             // 
             this.ZielortAbfahrtstafel.HeaderText = "Zielort";
             this.ZielortAbfahrtstafel.Name = "ZielortAbfahrtstafel";
-            this.ZielortAbfahrtstafel.Width = 110;
+            this.ZielortAbfahrtstafel.Width = 200;
+            // 
+            // SuchenButton2
+            // 
+            this.SuchenButton2.Location = new System.Drawing.Point(199, 79);
+            this.SuchenButton2.Name = "SuchenButton2";
+            this.SuchenButton2.Size = new System.Drawing.Size(75, 23);
+            this.SuchenButton2.TabIndex = 2;
+            this.SuchenButton2.Text = "Suchen";
+            this.SuchenButton2.UseVisualStyleBackColor = true;
+            this.SuchenButton2.Click += new System.EventHandler(this.SuchenButton2_Click);
+            // 
+            // StartortSuchleiste2
+            // 
+            this.StartortSuchleiste2.Location = new System.Drawing.Point(9, 82);
+            this.StartortSuchleiste2.Name = "StartortSuchleiste2";
+            this.StartortSuchleiste2.Size = new System.Drawing.Size(163, 20);
+            this.StartortSuchleiste2.TabIndex = 1;
+            this.StartortSuchleiste2.TextChanged += new System.EventHandler(this.StartortSuchleiste2_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Startort";
+            // 
+            // labelDatum
+            // 
+            this.labelDatum.AutoSize = true;
+            this.labelDatum.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDatum.Location = new System.Drawing.Point(328, 16);
+            this.labelDatum.Name = "labelDatum";
+            this.labelDatum.Size = new System.Drawing.Size(101, 33);
+            this.labelDatum.TabIndex = 8;
+            this.labelDatum.Text = "Datum";
+            // 
+            // labelUhrzeit
+            // 
+            this.labelUhrzeit.AutoSize = true;
+            this.labelUhrzeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUhrzeit.Location = new System.Drawing.Point(170, 16);
+            this.labelUhrzeit.Name = "labelUhrzeit";
+            this.labelUhrzeit.Size = new System.Drawing.Size(108, 33);
+            this.labelUhrzeit.TabIndex = 9;
+            this.labelUhrzeit.Text = "Uhrzeit";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -268,6 +294,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AusgabeFahrplan)).EndInit();
@@ -301,8 +328,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AnkunftszeitFahrplan;
         private System.Windows.Forms.DataGridViewTextBoxColumn LinieAbfahrtstafel;
         private System.Windows.Forms.DataGridViewTextBoxColumn AbfahrtszeitAbfahrtstafel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AnkunftszeitAbfahrtstafel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ZielortAbfahrtstafel;
+        private System.Windows.Forms.Label labelDatum;
+        private System.Windows.Forms.Label labelUhrzeit;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
